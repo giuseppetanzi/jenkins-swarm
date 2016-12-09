@@ -13,14 +13,14 @@ objects:
   kind: ImageStream
   metadata:
     labels:
-      role: jenkins-master
+      app: jenkins-master
     name: jenkins-master
   spec: {}
 - apiVersion: v1
   kind: BuildConfig
   metadata:
     labels:
-      name: jenkins-master
+      app: jenkins-master
     name: jenkins-master
   spec:
     output:
