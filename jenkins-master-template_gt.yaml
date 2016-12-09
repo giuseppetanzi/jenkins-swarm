@@ -75,7 +75,7 @@ objects:
         containers:
         - env:
           - name: JENKINS_PASSWORD
-            value: ${JENKINS_PASSWORD}
+            value: password
           image: jenkins-master
           imagePullPolicy: Always
           name: jenkins-master
