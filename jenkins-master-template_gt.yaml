@@ -44,7 +44,7 @@ objects:
   metadata:
     labels:
       app: jenkins-master
-    name: jenkins-master
+    name: jenkins
   spec:
     ports:
     - name: web
@@ -115,3 +115,15 @@ objects:
           kind: ImageStreamTag
           name: jenkins-master:latest
       type: ImageChange
+- apiVersion: v1
+  kind: Route
+  metadata:
+    labels:
+      app: jenkins-master
+    name: jenkins
+  spec:
+    port:
+      targetPort: 8080
+    to:
+      kind: Service
+      name: jenkins
