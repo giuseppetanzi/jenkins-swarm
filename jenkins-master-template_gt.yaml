@@ -27,6 +27,11 @@ objects:
 - apiVersion: v1
   kind: ImageStream
   metadata:
+    name: jenkins-temp-master
+  spec: {}
+- apiVersion: v1
+  kind: ImageStream
+  metadata:
     name: jenkins-master
   spec: {}
 - apiVersion: v1
