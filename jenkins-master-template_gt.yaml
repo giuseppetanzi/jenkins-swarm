@@ -69,7 +69,7 @@ objects:
     template:
       metadata:
         labels:
-          app: jenkins-master
+          name: jenkins-master
           deploymentconfig: jenkins-master
       spec:
         containers:
