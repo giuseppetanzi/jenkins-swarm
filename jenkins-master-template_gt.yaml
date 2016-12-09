@@ -8,6 +8,7 @@ metadata:
     iconClass: icon-jenkins
     tags: instant-app,jenkins
   name: jenkins-master-builder
+parameters:
 - description: Git source URI for Jenkins S2I
   name: SOURCE_REPOSITORY_URL
   required: true
