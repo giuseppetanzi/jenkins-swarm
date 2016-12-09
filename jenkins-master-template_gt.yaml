@@ -8,6 +8,20 @@ metadata:
     iconClass: icon-jenkins
     tags: instant-app,jenkins
   name: jenkins-master-builder
+- description: Git source URI for Jenkins S2I
+  name: SOURCE_REPOSITORY_URL
+  required: true
+  value: https://github.com/siamaksade/jenkins-s2i-example.git
+- description: Git branch/tag reference
+  name: SOURCE_REPOSITORY_REF
+  value: master
+- description: Path within Git project to build; empty for root project directory.
+  name: CONTEXT_DIR
+  value: master
+- description: Maximum amount of memory the container can use.
+  displayName: Memory Limit
+  name: MEMORY_LIMIT
+  value: 1Gi
 objects:
 - apiVersion: v1
   kind: ImageStream
