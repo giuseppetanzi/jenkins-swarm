@@ -74,7 +74,7 @@ objects:
       sourceStrategy:
         from:
           kind: ImageStreamTag
-          name: jenkins-temp-master
+          name: jenkins-temp-master:latest
       type: Source
     triggers:
     - type: ConfigChange
