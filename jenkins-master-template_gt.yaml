@@ -18,12 +18,12 @@ objects:
   kind: BuildConfig
   metadata:
     labels:
-    name: jenkins-master
+    name: jenkins-temp-master
   spec:
     output:
       to:
         kind: ImageStreamTag
-        name: jenkins-master:latest
+        name: jenkins-temp-master:latest
     resources: {}
     source:
       contextDir: '1'
@@ -36,6 +36,37 @@ objects:
       type: Docker
     triggers:
     - type: ConfigChange
+- apiVersion: v1
+  kind: BuildConfig
+  metadata:
+    name: jenkins-master
+  spec:
+    output:
+      to:
+        kind: ImageStreamTag
+        name: jenkins-master:latest
+    resources:
+      limits:
+        memory: ${MEMORY_LIMIT}
+    source:
+      contextDir: ${CONTEXT_DIR}
+      git:
+        uri: ${SOURCE_REPOSITORY_URL}
+        ref: ${SOURCE_REPOSITORY_REF}
+      secrets: []
+      type: Git
+    strategy:
+      sourceStrategy:
+        from:
+          kind: ImageStreamTag
+          name: jenkins-temp-master
+      type: Source
+    triggers:
+    - type: ConfigChange
+    - imageChange: {}
+      type: ImageChange
+  status:
+    lastVersion: 0
 - apiVersion: v1
   kind: Service
   metadata:
