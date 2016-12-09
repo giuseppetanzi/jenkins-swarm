@@ -78,7 +78,7 @@ objects:
             value: ${JENKINS_PASSWORD}
           image: jenkins-master
           imagePullPolicy: Always
-          name: jenkins
+          name: jenkins-master
           ports:
           - containerPort: 8080
             protocol: TCP
