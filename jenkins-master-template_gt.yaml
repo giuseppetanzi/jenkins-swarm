@@ -62,7 +62,7 @@ objects:
   spec:
     replicas: 1
     selector:
-      app: jenkins-master
+      name: jenkins-master
       deploymentconfig: jenkins-master
     strategy:
       type: Recreate
