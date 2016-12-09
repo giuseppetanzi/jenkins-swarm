@@ -7,7 +7,7 @@ metadata:
     description: Provide a convenient way to create an image to a Jenkins master image (with jdk)
     iconClass: icon-jenkins
     tags: instant-app,jenkins
-  name: jenkins-slave-builder
+  name: jenkins-master-builder
 objects:
 - apiVersion: v1
   kind: ImageStream
