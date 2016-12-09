@@ -12,15 +12,12 @@ objects:
 - apiVersion: v1
   kind: ImageStream
   metadata:
-    labels:
-      app: jenkins-master
     name: jenkins-master
   spec: {}
 - apiVersion: v1
   kind: BuildConfig
   metadata:
     labels:
-      app: jenkins-master
     name: jenkins-master
   spec:
     output:
@@ -42,8 +39,6 @@ objects:
 - apiVersion: v1
   kind: Service
   metadata:
-    labels:
-      app: jenkins-master
     name: jenkins
   spec:
     ports:
@@ -56,15 +51,13 @@ objects:
       protocol: TCP
       targetPort: 50000
     selector:
-      app: jenkins-master
+      name: jenkins-master
       deploymentconfig: jenkins-master
     sessionAffinity: None
     type: ClusterIP
 - apiVersion: v1
   kind: DeploymentConfig
   metadata:
-    labels:
-      app: jenkins-master
     name: jenkins-master
   spec:
     replicas: 1
@@ -118,8 +111,6 @@ objects:
 - apiVersion: v1
   kind: Route
   metadata:
-    labels:
-      app: jenkins-master
     name: jenkins
   spec:
     port:
