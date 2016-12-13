@@ -57,61 +57,6 @@
   </jdks>
   <viewsTabBar class="hudson.views.DefaultViewsTabBar"/>
   <myViewsTabBar class="hudson.views.DefaultMyViewsTabBar"/>
-  <clouds>
-    <org.csanchez.jenkins.plugins.kubernetes.KubernetesCloud plugin="kubernetes@0.8">
-         <name>openshift</name>
-      <templates>
-        <org.csanchez.jenkins.plugins.kubernetes.PodTemplate>
-          <name>maven</name>
-          <image>registry.access.redhat.com/openshift3/jenkins-slave-maven-rhel7</image>
-          <privileged>false</privileged>
-          <alwaysPullImage>false</alwaysPullImage>
-          <command></command>
-          <args></args>
-          <remoteFs>/tmp</remoteFs>
-          <instanceCap>2147483647</instanceCap>
-          <label>maven</label>
-          <nodeSelector></nodeSelector>
-          <resourceRequestCpu></resourceRequestCpu>
-          <resourceRequestMemory></resourceRequestMemory>
-          <resourceLimitCpu></resourceLimitCpu>
-          <resourceLimitMemory></resourceLimitMemory>
-          <volumes/>
-          <envVars/>
-          <annotations/>
-          <imagePullSecrets/>
-        </org.csanchez.jenkins.plugins.kubernetes.PodTemplate>
-                <org.csanchez.jenkins.plugins.kubernetes.PodTemplate>
-          <name>nodejs</name>
-          <image>registry.access.redhat.com/openshift3/jenkins-slave-nodejs-rhel7</image>
-          <privileged>false</privileged>
-          <alwaysPullImage>false</alwaysPullImage>
-          <command></command>
-          <args></args>
-          <remoteFs>/home/jenkins</remoteFs>
-          <instanceCap>2147483647</instanceCap>
-          <label>nodejs</label>
-          <nodeSelector></nodeSelector>
-          <resourceRequestCpu></resourceRequestCpu>
-          <resourceRequestMemory></resourceRequestMemory>
-          <resourceLimitCpu></resourceLimitCpu>
-          <resourceLimitMemory></resourceLimitMemory>
-          <volumes/>
-          <envVars/>
-          <annotations/>
-          <imagePullSecrets/>
-        </org.csanchez.jenkins.plugins.kubernetes.PodTemplate>
-      </templates>
-      <serverUrl>https://172.30.0.1:443</serverUrl>
-              <skipTlsVerify>true</skipTlsVerify>
-      <namespace>dev-demo</namespace>
-      <jenkinsUrl>http://172.30.167.215:8080</jenkinsUrl>
-      <jenkinsTunnel>:50000</jenkinsTunnel>
-      <credentialsId>1a12dfa4-7fc5-47a7-aa17-cc56572a41c7</credentialsId>
-      <containerCap>10</containerCap>
-      <retentionTimeout>5</retentionTimeout>
-    </org.csanchez.jenkins.plugins.kubernetes.KubernetesCloud>
-  </clouds>
   <quietPeriod>1</quietPeriod>
   <scmCheckoutRetryCount>0</scmCheckoutRetryCount>
   <views>
