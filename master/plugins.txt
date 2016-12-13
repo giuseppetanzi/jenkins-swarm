@@ -3,4 +3,4 @@ scm-api:1.0
 git-client:1.19.6
 greenballs:1.15
 chromedriver:1.2
-selenium:2.4.1
+selenium:2.53.1
