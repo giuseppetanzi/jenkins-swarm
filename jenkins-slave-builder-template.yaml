@@ -21,8 +21,6 @@ objects:
 - apiVersion: v1
   kind: BuildConfig
   metadata:
-    labels:
-      name: ${SLAVE_LABEL}-slave
     name: jenkins-swarm-slave
   spec:
     output:
@@ -99,8 +97,8 @@ objects:
                 name: JENKINS_SERVICE_PORT
                 value: '8080'
               -
-                name: SLAVE_LABEL
-                value: ${SLAVE_LABEL}
+                name: SLAVE_LABELS
+                value: ${SLAVE_LABELS}
               -
                 name: EXECUTORS
                 value: ${EXECUTORS}
@@ -118,9 +116,9 @@ objects:
         dnsPolicy: ClusterFirst
         securityContext:
 parameters:
-- description: Label for slave pods which are used by Jenkins to discover slave pods and assign jobs to them
+- description: Labels (comma separated) for slave pods which are used by Jenkins to discover slave pods and assign jobs to them
   displayName: Jenkins Slave Label
-  name: SLAVE_LABEL
+  name: SLAVE_LABELS
   required: true
   value: jdk8
 - description: Git repository with Dockerfile and slave entrypoint.
