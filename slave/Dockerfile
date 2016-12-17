@@ -12,10 +12,14 @@ LABEL io.k8s.display-name="Jenkins Slave - With Swarm plugin installed" \
  
  RUN curl -sSLo $HOME/swarm-client-$JENKINS_SWARM_VERSION-jar-with-dependencies.jar https://repo.jenkins-ci.org/releases/org/jenkins-ci/plugins/swarm-client/$JENKINS_SWARM_VERSION/swarm-client-$JENKINS_SWARM_VERSION-jar-with-dependencies.jar \
   && curl -sSLo $HOME/slave.jar http://repo.jenkins-ci.org/public/org/jenkins-ci/main/remoting/$JNLP_SLAVE_VERSION/remoting-$JNLP_SLAVE_VERSION.jar
- 
+
 COPY jenkins-swarm-slave.sh /$HOME
 RUN chown -R 1001:0 $HOME && \
     chmod -R g+rw $HOME && chmod g+x $HOME/jenkins-swarm-slave.sh
-    
+
+# install openjdk to have a preinstalled JDK configuration in config.xml
+USER root
+yum install java-1.8.0-openjdk-devel   
+
 USER 1001
 ENTRYPOINT ["/home/jenkins/jenkins-swarm-slave.sh"]
