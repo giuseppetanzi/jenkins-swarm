@@ -87,9 +87,6 @@ objects:
             name: jenkins-slave
             env:
               -
-                name: EXECUTORS
-                value: '3'
-              -
                 name: JENKINS_USERNAME
                 value: admin
               -
@@ -103,7 +100,10 @@ objects:
                 value: 8080
               -
                 name: EXECUTORS
-                value: '1'
+                value: '3'
+              -
+                name: SLAVE_LABEL
+                value: $SLAVE_LABEL
               -
                 name: JENKINS_CONTEXT_PATH
             resources:
