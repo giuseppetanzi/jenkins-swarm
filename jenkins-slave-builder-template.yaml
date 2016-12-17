@@ -4,7 +4,7 @@ labels:
   template: jenkins-swarm-slave-builder
 metadata:
   annotations:
-    description: Provide a convenient way to create a Jenkins swarm-based slave pool
+    description: Provide a convenient way to create a Jenkins swarm-based slave  pool
     iconClass: icon-jenkins
     tags: instant-app,jenkins
   name: jenkins-swarm-slave-builder
