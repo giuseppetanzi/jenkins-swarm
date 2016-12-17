@@ -87,6 +87,12 @@ objects:
             name: jenkins-slave
             env:
               -
+                name: EXECUTORS
+                value: 3
+              -
+                name: JENKINS_USERNAME
+                value: admin
+              -
                 name: JENKINS_PASSWORD
                 value: password
               -
