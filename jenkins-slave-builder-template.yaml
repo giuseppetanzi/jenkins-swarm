@@ -97,8 +97,8 @@ objects:
                 name: JENKINS_SERVICE_PORT
                 value: '8080'
               -
-                name: SLAVE_LABELS
-                value: ${SLAVE_LABELS}
+                name: SLAVE_LABEL
+                value: ${SLAVE_LABEL}
               -
                 name: EXECUTORS
                 value: ${EXECUTORS}
@@ -116,9 +116,9 @@ objects:
         dnsPolicy: ClusterFirst
         securityContext:
 parameters:
-- description: Labels (comma separated) for slave pods which are used by Jenkins to discover slave pods and assign jobs to them
+- description: Label for slave pods which are used by Jenkins to discover slave pods and assign jobs to them
   displayName: Jenkins Slave Label
-  name: SLAVE_LABELS
+  name: SLAVE_LABEL
   required: true
   value: jdk8
 - description: Git repository with Dockerfile and slave entrypoint.
