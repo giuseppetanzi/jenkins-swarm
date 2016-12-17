@@ -99,9 +99,6 @@ objects:
                 name: JENKINS_SERVICE_PORT
                 value: '8080'
               -
-                name: EXECUTORS
-                value: ${EXECUTORS}
-              -
                 name: SLAVE_LABEL
                 value: ${SLAVE_LABEL}
               -
@@ -143,7 +140,3 @@ parameters:
   displayName: Jenkins password
   name: JENKINS_PASSWORD
   value: password
-- description: Number of executors per slave
-  displayName: Jenkins slave executors
-  name: EXECUTORS
-  value: '3'
