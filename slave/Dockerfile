@@ -1,5 +1,5 @@
 # The FROM will be replaced when building in OpenShift
-FROM openshift3/jenkins-slave-base-rhel7
+FROM openshift3/jenkins-slave-maven-rhel7
 
 MAINTAINER Giuseppe Tanzi <gtanzi@redhat.com>
 LABEL io.k8s.display-name="Jenkins Slave - With Swarm plugin installed" \
@@ -16,10 +16,6 @@ LABEL io.k8s.display-name="Jenkins Slave - With Swarm plugin installed" \
 COPY jenkins-swarm-slave.sh /$HOME
 RUN chown -R 1001:0 $HOME && \
     chmod -R g+rw $HOME && chmod g+x $HOME/jenkins-swarm-slave.sh
-
-# install openjdk to have a preinstalled JDK configuration in config.xml
-USER root
-RUN yum install java-1.8.0-openjdk-devel   
 
 USER 1001
 ENTRYPOINT ["/home/jenkins/jenkins-swarm-slave.sh"]
