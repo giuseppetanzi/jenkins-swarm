@@ -16,4 +16,4 @@ LABEL io.k8s.display-name="Jenkins Slave - With Swarm plugin installed" \
 COPY jenkins-swarm-slave.sh /$HOME
 
 USER 1001
-ENTRYPOINT ["$HOME/jenkins-swarm-slave.sh"]
+ENTRYPOINT ["/home/jenkins/jenkins-swarm-slave.sh"]
