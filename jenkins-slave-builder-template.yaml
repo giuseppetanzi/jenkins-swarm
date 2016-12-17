@@ -41,6 +41,72 @@ objects:
       type: Docker
     triggers:
     - type: ConfigChange
+- apiVersion: v1
+  kind: DeploymentConfig
+  metadata:
+    name: jenkins-slave
+    labels:
+      application: jenkins-slave
+  spec:
+    strategy:
+      type: Rolling
+      rollingParams:
+        updatePeriodSeconds: 1
+        intervalSeconds: 1
+        timeoutSeconds: 600
+        maxUnavailable: 25%
+        maxSurge: 25%
+      resources:
+    triggers:
+      -
+        type: ConfigChange
+      -
+        type: ImageChange
+        imageChangeParams:
+          automatic: true
+          containerNames:
+            - jenkins-slave
+          from:
+            kind: ImageStreamTag
+            namespace: jenkins-cluster
+            name: 'jenkins-swarm-slave:latest'
+    replicas: 1
+    selector:
+      application: jenkins-swarm-slave
+      deploymentconfig: jenkins-swarm-slave
+    template:
+      metadata:
+        labels:
+          application: jenkins-swarm-slave
+          deploymentconfig: jenkins-swarm-slave
+      spec:
+        volumes:
+          -
+            name: jenkins-slave-data
+            emptyDir:
+        containers:
+          -
+            name: jenkins-slave
+            env:
+              -
+                name: JENKINS_PASSWORD
+                value: password
+              -
+                name: EXECUTORS
+                value: '1'
+              -
+                name: JENKINS_CONTEXT_PATH
+            resources:
+            volumeMounts:
+              -
+                name: jenkins-slave-data
+                mountPath: /var/lib/jenkins
+            terminationMessagePath: /dev/termination-log
+            imagePullPolicy: Always
+        restartPolicy: Always
+        terminationGracePeriodSeconds: 30
+        dnsPolicy: ClusterFirst
+        securityContext:
 parameters:
 - description: Label for slave pods which are used by Jenkins to discover slave pods and assign jobs to them
   displayName: Jenkins Slave Label
