@@ -10,7 +10,7 @@ slave_executors=${EXECUTORS:-"1"}
 echo "Running Jenkins Swarm Plugin...."
 
 # jenkins swarm slave
-JAR=`ls -1 /var/lib/jenkins/swarm-client-*.jar | tail -n 1`
+JAR=`ls -1 /home/jenkins/swarm-client-*.jar | tail -n 1`
 
 if [[ "$@" != *"-master "* ]] && [ ! -z "$JENKINS_PORT_8080_TCP_ADDR" ]; then
 PARAMS="-master http://${JENKINS_SERVICE_HOST}:${JENKINS_SERVICE_PORT}${JENKINS_CONTEXT_PATH} -tunnel ${JENKINS_SLAVE_SERVICE_HOST}:${JENKINS_SLAVE_SERVICE_PORT}${JENKINS_SLAVE_CONTEXT_PATH} -username ${master_username} -password ${master_password} -executors ${slave_executors}"
