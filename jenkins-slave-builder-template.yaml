@@ -100,7 +100,7 @@ objects:
                 value: 8080
               -
                 name: EXECUTORS
-                value: '3'
+                value: '1'
               -
                 name: SLAVE_LABEL
                 value: $SLAVE_LABEL
