@@ -47,7 +47,7 @@
         <hudson.tools.InstallSourceProperty>                                                                                                                                        
           <installers>                                                                                                                                                              
             <hudson.tools.JDKInstaller>                                                                                                                                             
-              <id>jdk-8u112-oth-JPR</id>                                                                                                                                            
+              <id>jdk-8u112-oth-JPR@CDS-CDS_Developer</id>                                                                                                                                            
               <acceptLicense>true</acceptLicense>                                                                                                                                   
             </hudson.tools.JDKInstaller>                                                                                                                                            
           </installers>                                                                                                                                                             
