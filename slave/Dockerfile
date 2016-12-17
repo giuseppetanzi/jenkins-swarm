@@ -11,10 +11,10 @@ LABEL io.k8s.display-name="Jenkins Slave - With Swarm plugin installed" \
  ENV JNLP_SLAVE_VERSION 2.52
  
  USER root
- RUN curl -sSLo /var/lib/jenkins/swarm-client-$JENKINS_SWARM_VERSION-jar-with-dependencies.jar https://repo.jenkins-ci.org/releases/org/jenkins-ci/plugins/swarm-client/$JENKINS_SWARM_VERSION/swarm-client-$JENKINS_SWARM_VERSION-jar-with-dependencies.jar \
-  && curl -sSLo /var/lib/jenkins/slave.jar http://repo.jenkins-ci.org/public/org/jenkins-ci/main/remoting/$JNLP_SLAVE_VERSION/remoting-$JNLP_SLAVE_VERSION.jar
+ RUN curl -sSLo /home/jenkins/swarm-client-$JENKINS_SWARM_VERSION-jar-with-dependencies.jar https://repo.jenkins-ci.org/releases/org/jenkins-ci/plugins/swarm-client/$JENKINS_SWARM_VERSION/swarm-client-$JENKINS_SWARM_VERSION-jar-with-dependencies.jar \
+  && curl -sSLo /home/jenkins/slave.jar http://repo.jenkins-ci.org/public/org/jenkins-ci/main/remoting/$JNLP_SLAVE_VERSION/remoting-$JNLP_SLAVE_VERSION.jar
  
-COPY jenkins-slave.sh /var/lib/jenkins/
+COPY jenkins-swarm-slave.sh /usr/local/bin/
 
 # Install headless Java
 # USER root
@@ -39,4 +39,4 @@ COPY jenkins-slave.sh /var/lib/jenkins/
 # Run the JNLP client by default
 # To use swarm client, specify "/var/lib/jenkins/run-swarm-client" as Command
 USER 1001
-ENTRYPOINT ["/var/lib/jenkins/jenkins-slave.sh"]
+ENTRYPOINT ["/usr/local/bin/jenkins-swarm-slave.sh"]
