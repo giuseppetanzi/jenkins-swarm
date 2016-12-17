@@ -14,10 +14,9 @@ objects:
   metadata:
     annotations:
       slave-directory: /var/lib/jenkins
-      slave-label: ${SLAVE_LABEL}
     labels:
       role: jenkins-slave
-    name: ${SLAVE_LABEL}-jenkins-slave
+    name: jenkins-swarm-slave
   spec: {}
 - apiVersion: v1
   kind: BuildConfig
