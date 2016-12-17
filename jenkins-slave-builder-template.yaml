@@ -7,7 +7,7 @@ metadata:
     description: Provide a convenient way to create a Jenkins swarm-based slave pool
     iconClass: icon-jenkins
     tags: instant-app,jenkins
-  name: jenkins-slave-builder
+  name: jenkins-swarm-slave-builder
 objects:
 - apiVersion: v1
   kind: ImageStream
@@ -45,8 +45,6 @@ objects:
   kind: DeploymentConfig
   metadata:
     name: jenkins-slave
-    labels:
-      application: jenkins-slave
   spec:
     strategy:
       type: Rolling
