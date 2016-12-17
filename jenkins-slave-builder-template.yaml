@@ -144,4 +144,4 @@ parameters:
 - description: Number of executors per slave
   displayName: Jenkins slave executors
   name: EXECUTORS
-  value: 3
+  value: '3'
