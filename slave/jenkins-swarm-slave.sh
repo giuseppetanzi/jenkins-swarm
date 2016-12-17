@@ -5,6 +5,7 @@ master_password=${JENKINS_PASSWORD:-"password"}
 slave_executors=${EXECUTORS:-"1"}
 
 
+source /usr/local/bin/generate_container_user
 
 
 echo "Running Jenkins Swarm Plugin...."
