@@ -2,7 +2,7 @@
 FROM openshift3/jenkins-slave-base-rhel7
 
 MAINTAINER Giuseppe Tanzi <gtanzi@redhat.com>
-LABEL io.k8s.display-name="Jenkins Slave - With Swarm plugin installed"
+LABEL io.k8s.display-name="Jenkins Slave - With Swarm plugin installed" \
       io.k8s.description="The jenkins slave swarm image has the swarm plugin on top of the jenkins slave base image." \
       io.openshift.tags="openshift,jenkins,slave,swarm"
       
@@ -10,7 +10,7 @@ LABEL io.k8s.display-name="Jenkins Slave - With Swarm plugin installed"
  ENV JENKINS_SWARM_VERSION 2.2
  
  RUN curl -sSLo /var/lib/jenkins/swarm-client-$JENKINS_SWARM_VERSION-jar-with-dependencies.jar https://repo.jenkins-ci.org/releases/org/jenkins-ci/plugins/swarm-client/$JENKINS_SWARM_VERSION/swarm-client-$JENKINS_SWARM_VERSION-jar-with-dependencies.jar \
-  && curl -sSLo /var/lib/jenkins/slave.jar http://repo.jenkins-ci.org/public/org/jenkins-ci/main/remoting/$JNLP_SLAVE_VERSION/remoting-$JNLP_SLAVE_VERSION.jar \
+  && curl -sSLo /var/lib/jenkins/slave.jar http://repo.jenkins-ci.org/public/org/jenkins-ci/main/remoting/$JNLP_SLAVE_VERSION/remoting-$JNLP_SLAVE_VERSION.jar
  
 COPY jenkins-slave.sh /var/lib/jenkins/
 
