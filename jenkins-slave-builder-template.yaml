@@ -1,10 +1,10 @@
 apiVersion: v1
 kind: Template
 labels:
-  template: jenkins-slave-builder
+  template: jenkins-swarm-slave-builder
 metadata:
   annotations:
-    description: Provide a convenient way to convert an image to a Jenkins slave image
+    description: Provide a convenient way to create a Jenkins swarm-based slave pool
     iconClass: icon-jenkins
     tags: instant-app,jenkins
   name: jenkins-slave-builder
@@ -23,12 +23,12 @@ objects:
   metadata:
     labels:
       name: ${SLAVE_LABEL}-slave
-    name: ${SLAVE_LABEL}-jenkins-slave
+    name: jenkins-swarm-slave
   spec:
     output:
       to:
         kind: ImageStreamTag
-        name: ${SLAVE_LABEL}-jenkins-slave:latest
+        name: jenkins-swarm-slave:latest
     resources: {}
     source:
       contextDir: ${SLAVE_REPO_CONTEXTDIR}
