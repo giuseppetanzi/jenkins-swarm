@@ -13,7 +13,7 @@ LABEL io.k8s.display-name="Jenkins Slave - With Swarm plugin installed" \
  RUN curl -sSLo $HOME/swarm-client-$JENKINS_SWARM_VERSION-jar-with-dependencies.jar https://repo.jenkins-ci.org/releases/org/jenkins-ci/plugins/swarm-client/$JENKINS_SWARM_VERSION/swarm-client-$JENKINS_SWARM_VERSION-jar-with-dependencies.jar \
   && curl -sSLo $HOME/slave.jar http://repo.jenkins-ci.org/public/org/jenkins-ci/main/remoting/$JNLP_SLAVE_VERSION/remoting-$JNLP_SLAVE_VERSION.jar
  
-COPY jenkins-swarm-slave.sh /usr/local/bin/
+COPY jenkins-swarm-slave.sh /$HOME
 
 USER 1001
-ENTRYPOINT ["/usr/local/bin/jenkins-swarm-slave.sh"]
+ENTRYPOINT ["$HOME/jenkins-swarm-slave.sh"]
