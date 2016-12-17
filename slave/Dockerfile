@@ -14,6 +14,7 @@ LABEL io.k8s.display-name="Jenkins Slave - With Swarm plugin installed" \
   && curl -sSLo $HOME/slave.jar http://repo.jenkins-ci.org/public/org/jenkins-ci/main/remoting/$JNLP_SLAVE_VERSION/remoting-$JNLP_SLAVE_VERSION.jar
 
 COPY jenkins-swarm-slave.sh /$HOME
+USER root
 RUN chmod +x $HOME/jenkins-swarm-slave.sh
 
 USER 1001
