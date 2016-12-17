@@ -39,22 +39,6 @@
   <markupFormatter class="hudson.markup.RawHtmlMarkupFormatter" plugin="antisamy-markup-formatter@1.1">
     <disableSyntaxHighlighting>false</disableSyntaxHighlighting>
   </markupFormatter>
-      <jdks>
-    <jdk>
-      <name>JDK-8</name>
-      <home></home>
-      <properties>
-        <hudson.tools.InstallSourceProperty>
-          <installers>
-            <hudson.tools.JDKInstaller>
-              <id>jdk-8u112-oth-JPR</id>
-              <acceptLicense>true</acceptLicense>
-            </hudson.tools.JDKInstaller>
-          </installers>
-        </hudson.tools.InstallSourceProperty>
-      </properties>
-    </jdk>
-  </jdks>
   <viewsTabBar class="hudson.views.DefaultViewsTabBar"/>
   <myViewsTabBar class="hudson.views.DefaultMyViewsTabBar"/>
   <clouds>
