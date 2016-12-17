@@ -88,10 +88,10 @@ objects:
             env:
               -
                 name: JENKINS_USERNAME
-                value: admin
+                value: ${JENKINS_USERNAME}
               -
                 name: JENKINS_PASSWORD
-                value: password
+                value: ${JENKINS_PASSWORD}
               -
                 name: JENKINS_SERVICE_HOST
                 value: jenkins
@@ -100,10 +100,10 @@ objects:
                 value: '8080'
               -
                 name: EXECUTORS
-                value: '3'
+                value: ${EXECUTORS}
               -
                 name: SLAVE_LABEL
-                value: $SLAVE_LABEL
+                value: ${SLAVE_LABEL}
               -
                 name: JENKINS_CONTEXT_PATH
             resources:
@@ -135,3 +135,15 @@ parameters:
   displayName: Git Reference
   name: SLAVE_REPO_REF
   value: master
+- description: Jenkins master username.
+  displayName: Jenkins username
+  name: JENKINS_USERNAME
+  value: admin
+- description: Jenkins master password
+  displayName: Jenkins password
+  name: JENKINS_PASSWORD
+  value: password
+- description: Number of executors per slave
+  displayName: Jenkins slave executors
+  name: EXECUTORS
+  value: 3
