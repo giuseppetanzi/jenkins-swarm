@@ -1,5 +1,5 @@
 # The FROM will be replaced when building in OpenShift
-FROM FROM openshift/jenkins-slave-base-rhel7
+FROM openshift/jenkins-slave-base-rhel7
 
 MAINTAINER Giuseppe Tanzi <gtanzi@redhat.com>
 LABEL io.k8s.display-name="Jenkins Slave - With Swarm plugin installed"
