@@ -22,8 +22,6 @@ objects:
 - apiVersion: v1
   kind: BuildConfig
   metadata:
-    annotations:
-      description: Modifies the ${IMAGE_NAME} to run as Jenkins slave
     labels:
       name: ${SLAVE_LABEL}-slave
     name: ${SLAVE_LABEL}-jenkins-slave
@@ -45,11 +43,6 @@ objects:
     triggers:
     - type: ConfigChange
 parameters:
-- description: The name of an image to convert to a Jenkins slave image.
-  displayName: Image Name
-  name: IMAGE_NAME
-  required: true
-  value: rhel7/rhel
 - description: Label for slave pods which are used by Jenkins to discover slave pods and assign jobs to them
   displayName: Jenkins Slave Label
   name: SLAVE_LABEL
