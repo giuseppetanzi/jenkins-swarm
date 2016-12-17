@@ -19,7 +19,7 @@ RUN chown -R 1001:0 $HOME && \
 
 # install openjdk to have a preinstalled JDK configuration in config.xml
 USER root
-yum install java-1.8.0-openjdk-devel   
+RUN yum install java-1.8.0-openjdk-devel   
 
 USER 1001
 ENTRYPOINT ["/home/jenkins/jenkins-swarm-slave.sh"]
