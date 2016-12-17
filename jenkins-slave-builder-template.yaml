@@ -41,9 +41,6 @@ objects:
       type: Git
     strategy:
       dockerStrategy:
-        from:
-          kind: DockerImage
-          name: ${IMAGE_NAME}
       type: Docker
     triggers:
     - type: ConfigChange
