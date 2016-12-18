@@ -15,7 +15,8 @@ LABEL io.k8s.display-name="Jenkins Slave - With Swarm plugin installed" \
 
 COPY jenkins-swarm-slave.sh /$HOME
 USER root
-RUN chmod +x $HOME/jenkins-swarm-slave.sh
+RUN yum install xorg-x11-server-Xvfb && yum install firefox \
+&& chmod +x $HOME/jenkins-swarm-slave.sh
 
 USER 1001
 ENTRYPOINT ["/home/jenkins/jenkins-swarm-slave.sh"]
