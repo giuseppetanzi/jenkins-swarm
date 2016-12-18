@@ -81,10 +81,9 @@ objects:
             name: jenkins-slave-data
             emptyDir:
         containers:
-          -
-            
+          -            
             ports:
-            - containerPort: 8080
+            - containerPort: 5555
               protocol: TCP
             name: jenkins-slave
             env:
