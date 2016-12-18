@@ -6,7 +6,10 @@ slave_executors=${EXECUTORS:-"1"}
 
 
 source /usr/local/bin/generate_container_user
-
+function shutdown {
+  kill -s SIGTERM $NODE_PID
+  wait $NODE_PID
+}
 
 echo "Running Jenkins Swarm Plugin...."
 
