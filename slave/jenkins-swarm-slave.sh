@@ -29,6 +29,7 @@ fi
 echo Running java $JAVA_OPTS -jar $JAR -fsroot $HOME $PARAMS "$@" in xvfb environment
 
 SERVERNUM=$(get_server_num)
+echo SERVERNUM $SERVERNUM
 
 rm -f /tmp/.X*lock
 
