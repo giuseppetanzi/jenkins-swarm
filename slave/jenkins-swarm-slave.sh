@@ -20,6 +20,10 @@ fi
 
 echo Running java $JAVA_OPTS -jar $JAR -fsroot $HOME $PARAMS "$@" in xvfb environment
 
+SERVERNUM=$(get_server_num)
+
+rm -f /tmp/.X*lock
+
 xvfb-run -n $SERVERNUM --server-args="-screen 0 $GEOMETRY -ac +extension RANDR" \
 java $JAVA_OPTS -jar $JAR -fsroot $HOME $PARAMS "$@" &
 NODE_PID=$!
