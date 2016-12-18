@@ -4,7 +4,7 @@ master_username=${JENKINS_USERNAME:-"admin"}
 master_password=${JENKINS_PASSWORD:-"password"}
 slave_executors=${EXECUTORS:-"1"}
 export GEOMETRY="$SCREEN_WIDTH""x""$SCREEN_HEIGHT""x""$SCREEN_DEPTH"
-
+source /opt/bin/functions.sh
 source /usr/local/bin/generate_container_user
 function shutdown {
   kill -s SIGTERM $NODE_PID
