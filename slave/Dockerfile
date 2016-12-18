@@ -25,6 +25,10 @@ RUN curl -sSLo /tmp/geckodriver.tar.gz https://github.com/mozilla/geckodriver/re
   && mv /opt/geckodriver /opt/geckodriver-$GECKODRIVER_VERSION \
   && chmod 755 /opt/geckodriver-$GECKODRIVER_VERSION \
   && ln -fs /opt/geckodriver-$GECKODRIVER_VERSION /usr/bin/geckodriver
+ENV SCREEN_WIDTH 1360
+ENV SCREEN_HEIGHT 1020
+ENV SCREEN_DEPTH 24
+ENV DISPLAY :99.0
 
 USER 1001
 ENTRYPOINT ["/home/jenkins/jenkins-swarm-slave.sh"]
