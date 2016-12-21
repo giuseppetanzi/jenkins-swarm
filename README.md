@@ -28,7 +28,7 @@ An example demonstrating how to start a Jenkins slave pool on OpenShift, based o
   ```
   $ oc new-app jenkins-master-s2i
   ```
-5. Build and create Jenkins slave image. The image Dockerfile inherits from the default "
+5. Build and create Jenkins slave image. The relative Dockerfile inherits from the default "openshift/jenkins-slave-maven-centos7" Docker image, so any Jenkins Maven build can be run on the slaves.
 
   ```
   $ oc new-app jenkins-slave-builder
