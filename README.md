@@ -1,19 +1,19 @@
-# Jenkins S2I Example
+# Jenkins Grid with Swarm Plugin, based on Jenkins S2I for OpenShift
 
-An example demonstrating Jenkins S2I features for installing plugins, configuring jobs, Jenkins, etc and using slave pods for Jenkins jobs.
+An example demonstrating how to start a Jenkins slave pool on OpenShift, based on the Swarm plugin for Jenkins.
 
 ## Installation
 
 1. Create a new OpenShift project, where the Jenkins server will run:
 
   ```
-  $ oc new-project ci --display-name="CI/CD"
+  $ oc new-project jenkins-pool --display-name="Jenkins Pool Based on Swarm Plugin"
   ```
 
 2. Give the Jenkins Pod service account rights to do API calls to OpenShift. This allows us to do the Jenkins Slave image discovery automatically.
 
   ```
-  $ oc policy add-role-to-user edit -z default -n ci
+  $ oc policy add-role-to-user edit -z default -n jenkins-pool
   ```
 
 3. Install the provided OpenShift templates:
