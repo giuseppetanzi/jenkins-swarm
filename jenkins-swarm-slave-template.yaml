@@ -64,7 +64,6 @@ objects:
             - jenkins-slave
           from:
             kind: ImageStreamTag
-            namespace: jenkins-cluster
             name: 'jenkins-swarm-slave:latest'
     replicas: 1
     selector:
