@@ -76,8 +76,6 @@ objects:
 - apiVersion: v1
   kind: BuildConfig
   metadata:
-    labels:
-      app: jenkins
     name: jenkins
   spec:
     output:
@@ -110,20 +108,16 @@ objects:
 - apiVersion: v1
   kind: DeploymentConfig
   metadata:
-    labels:
-      app: jenkins
     name: jenkins
   spec:
     replicas: 1
     selector:
-      app: jenkins
       deploymentconfig: jenkins
     strategy:
       type: Recreate
     template:
       metadata:
         labels:
-          app: jenkins
           deploymentconfig: jenkins
       spec:
         containers:
