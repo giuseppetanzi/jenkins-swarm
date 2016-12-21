@@ -33,4 +33,10 @@ An example demonstrating how to start a Jenkins slave pool on OpenShift, based o
   ```
   $ oc new-app jenkins-slave-builder
   ```
+6. The template creates only one replica of the Swarm-enabled slave. Scale out your Jenkins pool via the OpenShift UI or the corresponding CLI command:
+
+  ```
+  $ oc scale dc/ab-example-a --replicas=5
+  ```
+
 
