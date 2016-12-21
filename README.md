@@ -31,9 +31,9 @@ An example demonstrating how to start a Jenkins slave pool on OpenShift, based o
 5. Build and create Jenkins slave image. The relative Dockerfile inherits from the default "openshift/jenkins-slave-maven-centos7" Docker image, so any Jenkins Maven build can be run on the slaves. Note that the EXECUTORS parameter of the template can allow a higher parallelism, configuring a number of available executor threads on each slave (default value is 3). 
 
   ```
-  $ oc new-app jenkins-slave-builder
+  $ oc new-app jenkins-swarm-slave-builder
   ```
-6. The template creates only one replica of the Swarm-enabled slave. Scale out your Jenkins pool via the OpenShift UI or the corresponding CLI command:
+6. The template creates only one replica of the Swarm-enabled slave (with 3 executor threads). Scale out your Jenkins pool via the OpenShift UI or the corresponding CLI command:
 
   ```
   $ oc scale dc/jenkins-slave --replicas=5
