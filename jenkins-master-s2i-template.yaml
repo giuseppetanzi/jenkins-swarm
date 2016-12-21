@@ -57,7 +57,7 @@ objects:
       protocol: TCP
       targetPort: 50000
     selector:
-      app: jenkins
+      app: jenkins-master-s2i
       deploymentconfig: jenkins
     sessionAffinity: None
     type: ClusterIP
