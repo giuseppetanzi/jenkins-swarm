@@ -19,18 +19,18 @@ An example demonstrating how to start a Jenkins slave pool on OpenShift, based o
 3. Install the provided OpenShift templates:
 
   ```
-  $ oc create -f jenkins-master-s2i-template.yaml      # For creating pre-configured Jenkins master using Jenkins S2I
+  $ oc create -f jenkins-master-s2i-template.yaml      # For creating pre-configured Jenkins master (ephemeral) using Jenkins S2I
   $ oc create -f jenkins-swarm-slave-template.yaml     # For creating swarm-enabled Jenkins slave pool
   ```
 
-5. Build Jenkins slave image.
+4. Build and create Jenkins master (via Web Console or the following CLI). The template uses S2I to preload some configuration into Jenkins (plugins, JDK/Maven configuration,...)
+
+  ```
+  $ oc new-app jenkins-master-s2i
+  ```
+5. Build and create Jenkins slave image. The image Dockerfile inherits from the default "
 
   ```
   $ oc new-app jenkins-slave-builder
   ```
 
-4. Create Jenkins master. You can customize the source repo and other configurations through template parameters. Note that this example doesn't define any [persistent volume](https://docs.openshift.com/enterprise/3.2/architecture/additional_concepts/storage.html). You need to define storage in order to retain Jenkins data on container restarts. 
-
-  ```
-  $ oc new-app jenkins-master-s2i
-  ```
