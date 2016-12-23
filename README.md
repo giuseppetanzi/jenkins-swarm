@@ -25,16 +25,21 @@ An example demonstrating how to start a Jenkins slave pool on OpenShift, based o
   (Alternatively, you can install the all-in-one template, containing all the needed resources for master and slaves):
   
 ```
-  $ oc create -f jenkins-master-s2i-template.yaml      # For creating pre-configured Jenkins master (ephemeral) using Jenkins S2I
+  $ oc create -f jenkins-swarm-master-slave-template.yaml      # For creating pre-configured Jenkins master (ephemeral) using Jenkins S2I and swarm-enabled Jenkins slaves
   ```
   
-
 4. Build and create Jenkins master (via Web Console or the following CLI). The template uses S2I to preload some configuration into Jenkins (plugins, JDK/Maven configuration,...)
 
   ```
   $ oc new-app jenkins-master-s2i
   ```
-5. Build and create Jenkins slave image. The relative Dockerfile inherits from the default "openshift/jenkins-slave-maven-centos7" Docker image, so any Jenkins Maven build can be run on the slaves. Note that the EXECUTORS parameter of the template can allow a higher parallelism, configuring a number of available executor threads on each slave (default value is 3). 
+  
+  (Alternatively, you can instantiate the all-in-one template for both master and slaves)
+  
+  ```
+  $ oc new-app jenkins-master-slave-swarm
+  ```
+5. (To be skipped if you instantiated the all-in-one template at step 4). Build and create Jenkins slave image. The relative Dockerfile inherits from the default "openshift/jenkins-slave-maven-centos7" Docker image, so any Jenkins Maven build can be run on the slaves. Note that the EXECUTORS parameter of the template can allow a higher parallelism, configuring a number of available executor threads on each slave (default value is 3). 
 
   ```
   $ oc new-app jenkins-swarm-slave-builder
