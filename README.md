@@ -22,6 +22,12 @@ An example demonstrating how to start a Jenkins slave pool on OpenShift, based o
   $ oc create -f jenkins-master-s2i-template.yaml      # For creating pre-configured Jenkins master (ephemeral) using Jenkins S2I
   $ oc create -f jenkins-swarm-slave-template.yaml     # For creating swarm-enabled Jenkins slave pool
   ```
+  (Alternatively, you can install the all-in-one template, containing all the needed resources for master and slaves):
+  
+```
+  $ oc create -f jenkins-master-s2i-template.yaml      # For creating pre-configured Jenkins master (ephemeral) using Jenkins S2I
+  ```
+  
 
 4. Build and create Jenkins master (via Web Console or the following CLI). The template uses S2I to preload some configuration into Jenkins (plugins, JDK/Maven configuration,...)
 
