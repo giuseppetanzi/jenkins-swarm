@@ -43,8 +43,6 @@ objects:
 - apiVersion: v1
   kind: Service
   metadata:
-    labels:
-      app: jenkins
     name: jenkins
   spec:
     ports:
@@ -64,8 +62,6 @@ objects:
 - apiVersion: v1
   kind: Route
   metadata:
-    labels:
-      app: jenkins
     name: jenkins
   spec:
     port:
