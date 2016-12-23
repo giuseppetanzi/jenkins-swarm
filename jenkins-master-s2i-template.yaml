@@ -55,8 +55,7 @@ objects:
       protocol: TCP
       targetPort: 50000
     selector:
-      app: jenkins-master-s2i
-      deploymentconfig: jenkins
+      application: jenkins-master
     sessionAffinity: None
     type: ClusterIP
 - apiVersion: v1
@@ -108,13 +107,13 @@ objects:
   spec:
     replicas: 1
     selector:
-      deploymentconfig: jenkins
+      application: jenkins-master
     strategy:
       type: Recreate
     template:
       metadata:
         labels:
-          deploymentconfig: jenkins
+          application: jenkins-master
       spec:
         containers:
         - env:
