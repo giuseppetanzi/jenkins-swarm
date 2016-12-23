@@ -23,16 +23,40 @@ parameters:
   displayName: Memory Limit
   name: MEMORY_LIMIT
   value: 512Mi
-- description: Password for the Jenkins user.
-  displayName: Jenkins Password
-  generate: expression
-  name: JENKINS_PASSWORD
-  value: password
 - description: Volume space available for data, e.g. 512Mi, 2Gi.
   displayName: Volume Capacity
   name: VOLUME_CAPACITY
   required: true
   value: 1Gi
+- description: Label for slave pods which are used by Jenkins to discover slave pods and assign jobs to them
+  displayName: Jenkins Slave Label
+  name: SLAVE_LABEL
+  required: true
+  value: jdk8
+- description: Git repository with Dockerfile and slave entrypoint.
+  displayName: Repository URL
+  name: SLAVE_REPO_URL
+  value: https://github.com/giuseppetanzi/jenkins-swarm.git
+- description: The sub-directory inside the repository.
+  displayName: Context Directory
+  name: SLAVE_REPO_CONTEXTDIR
+  value: slave
+- description: The git ref or tag to use for customization.
+  displayName: Git Reference
+  name: SLAVE_REPO_REF
+  value: master
+- description: Jenkins master username.
+  displayName: Jenkins username
+  name: JENKINS_USERNAME
+  value: admin
+- description: Jenkins master password
+  displayName: Jenkins password
+  name: JENKINS_PASSWORD
+  value: password
+- description: Number of executors per slave
+  displayName: Jenkins slave executors
+  name: EXECUTORS
+  value: '3'
 objects:
 - apiVersion: v1
   kind: ImageStream
@@ -151,3 +175,111 @@ objects:
           kind: ImageStreamTag
           name: jenkins:latest
       type: ImageChange
+- apiVersion: v1
+  kind: ImageStream
+  metadata:
+    annotations:
+      slave-directory: /var/lib/jenkins
+    labels:
+      role: jenkins-slave
+    name: jenkins-swarm-slave
+  spec: {}
+- apiVersion: v1
+  kind: BuildConfig
+  metadata:
+    name: jenkins-swarm-slave
+  spec:
+    output:
+      to:
+        kind: ImageStreamTag
+        name: jenkins-swarm-slave:latest
+    resources: {}
+    source:
+      contextDir: ${SLAVE_REPO_CONTEXTDIR}
+      git:
+        ref: ${SLAVE_REPO_REF}
+        uri: ${SLAVE_REPO_URL}
+      type: Git
+    strategy:
+      dockerStrategy:
+      type: Docker
+    triggers:
+    - type: ConfigChange
+- apiVersion: v1
+  kind: DeploymentConfig
+  metadata:
+    name: jenkins-slave
+  spec:
+    strategy:
+      type: Rolling
+      rollingParams:
+        updatePeriodSeconds: 1
+        intervalSeconds: 1
+        timeoutSeconds: 600
+        maxUnavailable: 25%
+        maxSurge: 25%
+      resources:
+    triggers:
+      -
+        type: ConfigChange
+      -
+        type: ImageChange
+        imageChangeParams:
+          automatic: true
+          containerNames:
+            - jenkins-slave
+          from:
+            kind: ImageStreamTag
+            name: 'jenkins-swarm-slave:latest'
+    replicas: 1
+    selector:
+      application: jenkins-swarm-slave
+      deploymentconfig: jenkins-swarm-slave
+    template:
+      metadata:
+        labels:
+          application: jenkins-swarm-slave
+          deploymentconfig: jenkins-swarm-slave
+      spec:
+        volumes:
+          -
+            name: jenkins-slave-data
+            emptyDir:
+        containers:
+          -            
+            ports:
+            - containerPort: 5555
+              protocol: TCP
+            name: jenkins-slave
+            env:
+              -
+                name: JENKINS_USERNAME
+                value: ${JENKINS_USERNAME}
+              -
+                name: JENKINS_PASSWORD
+                value: ${JENKINS_PASSWORD}
+              -
+                name: JENKINS_SERVICE_HOST
+                value: jenkins
+              -
+                name: JENKINS_SERVICE_PORT
+                value: '8080'
+              -
+                name: SLAVE_LABEL
+                value: ${SLAVE_LABEL}
+              -
+                name: EXECUTORS
+                value: ${EXECUTORS}
+              -
+                name: JENKINS_CONTEXT_PATH
+            resources:
+            volumeMounts:
+              -
+                name: jenkins-slave-data
+                mountPath: /var/lib/jenkins
+            terminationMessagePath: /dev/termination-log
+            imagePullPolicy: Always
+        restartPolicy: Always
+        terminationGracePeriodSeconds: 30
+        dnsPolicy: ClusterFirst
+        securityContext:
