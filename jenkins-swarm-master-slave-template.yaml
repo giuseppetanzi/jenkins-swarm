@@ -1,13 +1,13 @@
 apiVersion: v1
 kind: Template
 labels:
-  template: jenkins-master-s2i
+  template: jenkins-master-slave-swarm
 metadata:
   annotations:
     description: Creates a Jenkins master using S2I for installing plugins and configuring Jenkins
     iconClass: icon-jenkins
     tags: instant-app,jenkins
-  name: jenkins-master-s2i
+  name: jenkins-master-slave-swarm
 parameters:
 - description: Git source URI for Jenkins S2I
   name: SOURCE_REPOSITORY_URL
